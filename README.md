@@ -1,0 +1,2 @@
+# LARAVEL-HMRC-VAT-VALIDATOR
+validate UK VAT using HMRC API
