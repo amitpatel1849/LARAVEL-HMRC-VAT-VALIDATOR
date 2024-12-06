@@ -1,0 +1,32 @@
+{
+    "name": "amit-patel/hmrc-vat-validator",
+    "description": "A Laravel package for validating UK VAT numbers and Business Name using HMRC API",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AmitPatel\\HmrcVatValidator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AmitPatel\\HmrcVatValidator\\HmrcVatValidatorServiceProvider"
+            ],
+            "aliases": {
+                "HmrcVatValidator": "AmitPatel\\HmrcVatValidator\\Facades\\HmrcVatValidator"
+            }
+        }
+    },
+    "authors": [
+        {
+            "name": "amit",
+            "email": "amitpatel727@yahoo.com"
+        }
+    ],
+	"minimum-stability": "dev",
+    "require": {
+        "php": ">=8.0",
+        "guzzlehttp/guzzle": "^7.0"
+    }
+}
