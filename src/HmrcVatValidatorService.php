@@ -26,7 +26,7 @@ class HmrcVatValidatorService
         if ($response->successful()) {
             return $response->json();
         }
-        throw new \Exception('Error checking VAT number: ' . $response->body());
+        return $response->json();
     }
 
     private function getAccessToken(): string
@@ -41,7 +41,6 @@ class HmrcVatValidatorService
         if ($response->successful()) {
             return $response->json()['access_token'];
         }
-
-        throw new \Exception("Unable to retrieve access token: " . $response->body());
+        return $response->json();
     }
 }
