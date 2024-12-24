@@ -24,7 +24,8 @@
             "email": "amitpatel727@yahoo.com"
         }
     ],
-	"minimum-stability": "stable",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
         "php": ">=8.0",
         "guzzlehttp/guzzle": "^7.0"
