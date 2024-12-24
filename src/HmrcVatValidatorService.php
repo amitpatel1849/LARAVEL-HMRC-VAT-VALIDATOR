@@ -19,18 +19,14 @@ class HmrcVatValidatorService
 
     public function validateVat(string $vatNumber): array
     {
-        $response = Http::withHeaders([
-            'Accept' => 'application/vnd.hmrc.1.0+json',
-            'Authorization' => 'Bearer ' . $this->getAccessToken(),
-        ])->get("{$this->baseUrl}/organisations/vat/check-vat-number", [
-            'vatNumber' => $vatNumber,
-        ]);
-
+        $accessToken = $this->getAccessToken();
+        $response = Http::withToken($accessToken)
+            ->accept('application/vnd.hmrc.1.0+json')
+            ->get($this->baseUrl."/organisations/vat/check-vat-number/lookup/$vatNumber");
         if ($response->successful()) {
             return $response->json();
         }
-
-        throw new \Exception("VAT validation failed: " . $response->body());
+        throw new \Exception('Error checking VAT number: ' . $response->body());
     }
 
     private function getAccessToken(): string
@@ -39,6 +35,7 @@ class HmrcVatValidatorService
             'grant_type' => 'client_credentials',
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
+            'scope' => 'read:vat',
         ]);
 
         if ($response->successful()) {
